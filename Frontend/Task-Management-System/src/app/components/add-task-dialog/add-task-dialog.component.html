@@ -1,0 +1,67 @@
+<div class="container">
+      <h2>Add Task to {{ data.status | titlecase }}</h2>
+
+      <div class="form-content">
+            <form #taskForm="ngForm" (ngSubmit)="addTask()" novalidate>
+
+                  <!-- Task Name -->
+                  <mat-form-field appearance="fill">
+                        <mat-label>Task Name</mat-label>
+                        <input matInput name="taskName" [(ngModel)]="task.taskName" required #taskName="ngModel"
+                              (ngModelChange)="taskNameExists = false" />
+                        <div *ngIf="taskName.invalid && taskName.touched" style="color: red;">
+                              Task Name is required.
+                        </div>
+                  </mat-form-field>
+
+                  <p *ngIf="taskNameExists" style="color: red;">
+                        This task name already exists. Please choose a different task name.
+                  </p>
+
+                  <!-- Description -->
+                  <mat-form-field appearance="fill">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput name="taskDesc" [(ngModel)]="task.taskDesc" required
+                              #taskDesc="ngModel"></textarea>
+                        <div *ngIf="taskDesc.invalid && taskDesc.touched" style="color: red;">
+                              Description is required.
+                        </div>
+                  </mat-form-field>
+
+                  <!-- Due Date -->
+                  <mat-form-field appearance="fill">
+                        <mat-label>Due Date</mat-label>
+                        <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate"
+                              [matDatepickerFilter]="dateFilter" name="dueDate" [(ngModel)]="task.dueDate" required
+                              #dueDate="ngModel" readonly/>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <div *ngIf="dueDate.invalid && dueDate.touched" style="color: red;">
+                              Due Date is required.
+                        </div>
+                  </mat-form-field>
+
+                  <!-- Priority -->
+                  <mat-form-field appearance="fill">
+                        <mat-label>Priority</mat-label>
+                        <mat-select name="priority" [(ngModel)]="task.priority" required #priority="ngModel">
+                              <mat-option value="low">Low</mat-option>
+                              <mat-option value="medium">Medium</mat-option>
+                              <mat-option value="high">High</mat-option>
+                        </mat-select>
+                        <div *ngIf="priority.invalid && priority.touched" style="color: red;">
+                              Priority is required.
+                        </div>
+                  </mat-form-field>
+
+            </form>
+      </div>
+
+      <div class="actions">
+            <button mat-raised-button color="primary" [disabled]="taskForm.invalid || taskNameExists"
+                  (click)="addTask()">
+                  Add
+            </button>
+            <button mat-button (click)="cancel()">Cancel</button>
+      </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="register-page">
+  <!-- Reused Header -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="assets/images/logo.png" alt="KanBoard Logo" class="logo-img" />
+      <span routerLink="/" >KanBoard</span>
+    </div>
+
+    <!-- Hamburger Icon for Mobile -->
+    <button class="menu-toggle" (click)="toggleMenu()">
+      &#9776; <!-- Unicode hamburger -->
+    </button>
+
+   
+  </header>
+
+  <!-- Registration Form -->
+  <main class="register-container">
+    <mat-card class="register-card">
+      <h2>Welcome!!!</h2>
+      <p>Sign in to your account</p>
+
+      <form (ngSubmit)="login()" #loginForm="ngForm" *ngIf="!showForgotPassword">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" [(ngModel)]="uname" name="uname" placeholder="Enter your username" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" [(ngModel)]="password" name="password" placeholder="Enter your password"
+            autocomplete="new-password" required />
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="full-width login-button" type="submit">Sign In</button>
+      </form>
+
+      <!-- Forgot Password Form -->
+      <form *ngIf="showForgotPassword && !resetEmailSent" (ngSubmit)="requestPasswordReset()">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" [(ngModel)]="resetEmail" name="resetEmail" placeholder="Enter your email"
+            required />
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="full-width login-button" type="submit">Send Reset Link</button>
+        <button mat-button color="primary" (click)="showForgotPassword = false">Back to Login</button>
+      </form>
+
+      <div *ngIf="resetEmailSent" class="reset-message">
+        <p>Password reset email sent. Please check your inbox.</p>
+        <button mat-button color="primary" (click)="showForgotPassword = false; resetEmailSent = false">Back to
+          Login</button>
+      </div>
+
+      <p class="login-link" style="color:white" *ngIf="!showForgotPassword && !resetEmailSent">
+        Don't have an account? <a routerLink="/register" routerLinkActive="active" style="color:white">Create one
+          here</a>
+      </p>
+
+      <p class="login-link" style="color:white; cursor: pointer;" *ngIf="!showForgotPassword && !resetEmailSent"
+        (click)="showForgotPassword = true">
+        Forgot Password?
+      </p>
+
+      <p class="msg">{{ msg }}</p>
+    </mat-card>
+  </main>
+
+  <!-- Reused Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="#" style="font-size:large"><b>FAQs</b></a>
+      <a href="#" style="font-size:large"><b>Contact</b></a>
+      <a href="#" style="font-size:large"><b>Privacy Policy</b></a>
+    </div>
+    <p style="margin-top: 10px; font-size:medium; color:#666">&copy; 2025 Kanboard. All rights reserved.</p>
+  </footer>
+</div>

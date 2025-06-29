@@ -1,0 +1,79 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div class="register-page">
+  <!-- Reused Header -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="assets/images/logo.png" alt="KanBoard Logo" class="logo-img" />
+      <span routerLink="/" >KanBoard</span>
+    </div>
+
+    <!-- Hamburger Icon for Mobile -->
+    <button class="menu-toggle" (click)="toggleMenu()">
+      &#9776; <!-- Unicode hamburger -->
+    </button>
+
+  </header>
+
+
+
+
+  <!-- Registration Form -->
+  <main class="register-container">
+    <mat-card class="register-card">
+      <h2>Create Account</h2>
+
+      <form (ngSubmit)="register()">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" [(ngModel)]="uname" name="uname" placeholder="Enter your username" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Email Address</mat-label>
+          <input matInput type="email" [(ngModel)]="email" name="email" placeholder="Enter your email" required />
+        </mat-form-field>
+
+        <button mat-raised-button color="accent" type="button" (click)="sendOTP()">Send OTP</button>
+        <br><br>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Enter OTP</mat-label>
+          <input matInput type="text" [(ngModel)]="otp" name="otp" placeholder="Enter the OTP" />
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="button" (click)="verifyOtp()">Verify OTP</button>
+
+        <p style="color: white;" *ngIf="otpVerified">{{ otpMsg }}</p>
+        <p style="color: white;" *ngIf="!otpVerified">{{ otpMsg }}</p>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" [(ngModel)]="password" name="password" placeholder="Enter your password"
+            required />
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" class="full-width custom-register-btn"
+          [disabled]="disableRegister">
+          Create Account
+        </button>
+      </form>
+
+      <p class="login-link" style="color:white">
+        Already have an account? <a routerLink="/login" routerLinkActive="active" style="color:white">Sign in here</a>
+      </p>
+
+      <p class="msg">{{ msg }}</p>
+    </mat-card>
+  </main>
+
+  <!-- Reused Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="#" style="font-size:large"><b>FAQs</b></a>
+      <a href="#" style="font-size:large"><b>Contact</b></a>
+      <a href="#" style="font-size:large"><b>Privacy Policy</b></a>
+    </div>
+    <p style="margin-top: 10px; font-size:medium">&copy; 2025 Kanboard. All rights reserved.</p>
+  </footer>
+</div>

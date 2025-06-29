@@ -1,0 +1,17 @@
+<div class="container">
+
+  <!-- <mat-card class="task-card" [ngClass]="task.priority" (click)="handleClick()">
+
+    <mat-card-title>{{ task.taskName }}</mat-card-title>
+
+  </mat-card> -->
+<mat-card
+  class="task-card"
+  [ngClass]="[task.priority]"
+  [class.overdue]="isOverdue"
+  (click)="handleClick()"
+>
+  <mat-card-title>{{ task.taskName }}</mat-card-title>
+</mat-card>
+
+</div>

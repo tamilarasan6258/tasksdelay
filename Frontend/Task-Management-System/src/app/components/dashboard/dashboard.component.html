@@ -1,0 +1,123 @@
+<div class="main">
+  <header class="dashboard-header">
+    <div class="left">
+      <img src="assets/images/logo.png" alt="KanBoard Logo" class="logo-img" />
+      <h2><span style="color:white" routerLink="/">KanBoard</span></h2>
+    </div>
+
+    <div class="right" class="profile">
+
+      <div class="right profile-container" (click)="toggleProfileMenu($event)">
+        <mat-icon class="profile-icon">account_circle</mat-icon>
+
+        <div *ngIf="isProfileMenuOpen" class="profile-dropdown">
+          <div class="profile-option profile-name"><strong>{{ username }}</strong></div>
+          <div class="profile-option profile-email">{{ email }}</div>
+          <div class="profile-option logout" (click)="logout(); $event.stopPropagation()">Logout</div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </header>
+
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" *ngIf="isMobileMenuOpen">
+
+
+    <div class="profile-container mobile-profile" (click)="toggleProfileMenu($event)">
+      <mat-icon class="profile-icon">account_circle</mat-icon>
+      <div *ngIf="isProfileMenuOpen" class="profile-dropdown">
+        <div class="profile-option profile-name">{{ username }}</div>
+        <div class="profile-option profile-email">{{ email }}</div>
+        <div class="profile-option logout" (click)="logout()">Logout</div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- Dashboard -->
+  <div class="dashboard">
+
+    <div class="dashboard-controls">
+      <div class="search-bar">
+        <mat-icon class="search-icon">search</mat-icon>
+        <input [(ngModel)]="searchTerm" class="search-input" placeholder="Search projects..." />
+      </div>
+      <button mat-raised-button color="primary" class="new-project-btn" (click)="openCreateDialog()">
+        <mat-icon>add</mat-icon>
+        New Project
+      </button>
+    </div>
+
+    <!-- No projects message -->
+    <div *ngIf="getFilteredProjects().length === 0" class="no-projects-msg">
+      <b>No projects found. Click <strong>"New Project"</strong> to get started!</b>
+    </div>
+
+    <!-- Project Cards Grid -->
+    <div class="project-container">
+      <mat-card class="project-card" *ngFor="let project of paginatedProjects">
+        <div class="card-header">
+          <h3 class="project-name">{{ project.projectName }}</h3>
+          <div [ngClass]="getDueDateClass(project.dueDate)" class="due-date">
+            <mat-icon class="date-icon">event</mat-icon>
+            <span class="date-text">{{ project.dueDate | date: 'MMM d, y' }}</span>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="project-description">
+            <p class="description-text">
+              {{ isExpanded[project._id] ? project.projectDesc : (project.projectDesc | slice:0:80) }}
+              <span *ngIf="project.projectDesc.length > 80" class="read-toggle" (click)="toggleReadMore(project._id)">
+                {{ isExpanded[project._id] ? ' Show less' : '...Show more' }}
+              </span>
+            </p>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="progress-container">
+            <p class="progress-label">Progress: {{ calculateProgress(project) | number:'1.0-0' }}%</p>
+            <mat-progress-bar [value]="calculateProgress(project)" color="primary"></mat-progress-bar>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <div class="card-actions">
+            <button class="action-btn view-btn" matTooltip="View Project" (click)="onView(project._id)">
+              <mat-icon>visibility</mat-icon>
+            </button>
+            <button class="action-btn edit-btn" matTooltip="Edit Project" (click)="editProject(project)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button class="action-btn delete-btn" matTooltip="Delete Project" (click)="confirmDelete(project)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+
+
+    <!-- ✅ Pagination shown outside cards -->
+    <div class="pagination-controls">
+      <button mat-icon-button (click)="changePage('prev')" [disabled]="currentPage === 1">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+
+      <span class="page-info">Page {{ currentPage }} of {{ totalPages }}</span>
+
+      <button mat-icon-button (click)="changePage('next')" [disabled]="currentPage === totalPages">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+
+
+  </div>
+
+</div>

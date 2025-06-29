@@ -1,0 +1,82 @@
+.container {
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.3s ease-out;
+  /* font-family: 'Segoe UI', sans-serif; */
+  max-width: 500px;
+  margin: auto;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h2 {
+  color: #1976d2;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 22px;
+  text-align: center;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+mat-form-field {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+mat-form-field.mat-form-field-invalid .mat-input-element {
+  border-bottom: 2px solid #d32f2f;
+}
+
+mat-error {
+  color: #d32f2f;
+  font-size: 13px;
+  margin-top: 4px;
+  display: block;
+}
+
+button[mat-button],
+button[mat-flat-button] {
+  padding: 8px 20px;
+  font-size: 14px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button[mat-button]:hover,
+button[mat-flat-button]:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+button[color="primary"]:disabled {
+  background-color: #c5e1f5;
+  color: #888;
+  cursor: not-allowed;
+}
+
+mat-dialog-actions {
+  margin-top: 20px;
+}
+
+.mat-datepicker-toggle {
+  margin-right: 8px;
+}
+
+textarea.mat-input-element {
+  resize: vertical;
+}

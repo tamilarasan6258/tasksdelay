@@ -1,0 +1,598 @@
+/* ==========================================================================
+   Base & Layout Styles for the .main container
+   ========================================================================== */
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  flex-grow: 1;
+  background-color: #f8f9fa;
+  font-family: 'Inter', sans-serif;
+  color: #343a40;
+}
+
+/* ==========================================================================
+   Dashboard Header Styles
+   ========================================================================== */
+.dashboard-header {
+  background-color: #0056b3;
+  color: #ffffff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 96%;
+  z-index: 1000;
+  flex-wrap: wrap;
+}
+
+.dashboard-header .left {
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-header .logo-img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.dashboard-header h2 {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.dashboard-header h2 span {
+  color: white;
+}
+
+.dashboard-header .nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: 35px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.dashboard-header .nav-links a:hover {
+  color: #cce5ff;
+  transform: translateY(-2px);
+}
+
+.dashboard-header .profile {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.dashboard-header .profile:hover {
+  transform: translateY(-2px);
+}
+
+.profile-container {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease-out;
+}
+
+.profile-container:hover {
+  transform: translateY(-2px);
+}
+
+.profile-icon {
+  font-size: 2.5rem;
+  padding: 15px;
+  margin-bottom: 7px;
+  color: #ffffff;
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #ffffff;
+  color: #333;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  min-width: 180px;
+  z-index: 999;
+  padding: 10px 0;
+  margin-top: 30px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profile-option {
+  padding: 10px 20px;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+.profile-option:last-child {
+  border-bottom: none;
+}
+
+.profile-option:hover {
+  background-color: #f1f3f5;
+}
+
+.profile-option.profile-name {
+  font-weight: 700;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  color: #0056b3;
+}
+
+.profile-option.profile-email {
+  color: #6c757d;
+  font-size: 0.85rem;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+
+.logout {
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.profile-option.logout {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.profile-option.logout:hover {
+  background-color: #ffebeb;
+}
+
+.dashboard {
+  flex-grow: 1;
+  padding: 32px;
+  background-color: #f8f9fa;
+  margin-top: 80px;
+}
+
+::ng-deep .mat-menu-item {
+  padding: 10px 16px;
+}
+
+::ng-deep .mat-icon {
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+/* Dashboard Controls Section - Adjusted to put search left, button right */
+.dashboard-controls {
+  display: flex;
+  justify-content: flex-end; /* Align all items to the right */
+  align-items: center;
+  margin-bottom: 24px;
+  gap: 16px; /* Space between search bar and button */
+  flex-wrap: wrap;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 25px;
+  padding: 8px 16px;
+  box-shadow: var(--shadow-base);
+  border: 1px solid var(--color-border-light);
+  max-width: 300px;     /* Optional: control size */
+  width: 100%;
+  margin-left: 14%;
+  flex-grow: 0;          /* Important: don’t stretch */
+}
+
+
+.search-icon {
+  color: var(--color-text-light);
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  flex-grow: 1;
+  font-size: 14px;
+  background: transparent;
+  color: var(--color-text-dark);
+}
+
+.search-input::placeholder {
+  color: var(--color-text-light);
+}
+
+.new-project-btn {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: white !important;
+  padding: 12px 24px;
+  border-radius: 25px;
+  border: none;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 230px;
+  white-space: nowrap;
+  /* Ensure this button always goes to the right */
+  margin-left: auto; /* This will push it to the far right within .dashboard-controls */
+}
+
+.new-project-btn mat-icon {
+  font-size: 18px;
+}
+
+.new-project-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+/* Project Grid */
+.project-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Project Card */
+.project-card {
+  background: white;
+  border-radius: 16px;
+  padding: 0;
+  box-shadow: var(--shadow-base);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  min-height: 280px;
+  max-height: 320px;
+  overflow: hidden;
+  border: 1px solid var(--color-border-light);
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary);
+}
+
+/* Card Header */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid var(--color-border-light);
+  background: linear-gradient(135deg, var(--color-primary-light) 0%, #ffffff 100%);
+  gap: 12px;
+}
+
+.project-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin: 0;
+  line-height: 1.3;
+  flex: 1;
+  text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Card Body */
+.card-body {
+  flex: 1;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-description {
+  flex: 1;
+}
+
+.description-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6c757d;
+  margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Card Footer */
+.card-footer {
+  padding: 16px 20px;
+  border-top: 1px solid #f0f0f0;
+  background: #fafbfc;
+}
+
+/* Due Date Styling */
+.due-date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 120px;
+  justify-content: center;
+}
+
+.date-icon {
+  font-size: 16px !important;
+  width: 16px;
+  height: 16px;
+}
+
+.date-text {
+  font-size: 11px;
+  line-height: 1;
+}
+
+.due-overdue {
+  background: linear-gradient(135deg, var(--color-danger), var(--color-danger-dark));
+  color: white;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+}
+
+.due-soon {
+  background: linear-gradient(135deg, var(--color-warning), var(--color-warning-dark));
+  color: white;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+
+.due-later {
+  background: linear-gradient(135deg, var(--color-success), var(--color-success-dark));
+  color: white;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+/* Action Buttons */
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+.action-btn mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.view-btn {
+  color: #667eea;
+}
+
+.view-btn:hover {
+  background: rgba(102, 126, 234, 0.1);
+  color: #5a6fd8;
+  transform: scale(1.1);
+}
+
+.edit-btn {
+  color: #feca57;
+}
+
+.edit-btn:hover {
+  background: rgba(254, 202, 87, 0.1);
+  color: #f39c12;
+  transform: scale(1.1);
+}
+
+.delete-btn {
+  color: #ff6b6b;
+}
+
+.delete-btn:hover {
+  background: rgba(255, 107, 107, 0.1);
+  color: #e74c3c;
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  .dashboard-controls {
+    flex-direction: column; /* Stacks search and new project vertically */
+    gap: 12px;
+    align-items: stretch; /* Makes them fill the width */
+  }
+
+  .search-bar {
+    max-width: 60%; /* Allow full width */
+    flex-grow: 1; /* Allow it to grow */
+  }
+
+  .new-project-btn {
+    width: 100%; /* Make button full width on small screens */
+    justify-content: center; /* Center content in the full-width button */
+    margin-left: 0; /* Remove auto-margin for stacking */
+  }
+
+  .project-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.no-projects-msg {
+  text-align: center;
+  font-size: 18px;
+  color: #6c757d;
+  margin: 60px 0;
+  padding: 40px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 2px dashed #dee2e6;
+}
+
+.read-toggle {
+  color: #667eea;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-size: 13px;
+}
+
+.read-toggle:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 8px;
+}
+
+.page-info {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.desktop-only {
+  display: flex;
+}
+
+.menu-icon {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #0056b3;
+  padding: 1rem 2rem;
+}
+
+.mobile-menu .nav-links.mobile-nav a {
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  display: flex;
+}
+
+.mobile-search .search-input {
+  width: 100%;
+}
+
+.mobile-profile .profile-dropdown {
+  z-index: 2000;
+}
+
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 72px;
+  left: 0;
+  right: 0;
+  background-color: #0056b3;
+  padding: 1rem 2rem;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 999;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .mobile-menu {
+    display: flex;
+  }
+
+  .dashboard-header {
+    padding: 0.8rem;
+  }
+
+  .dashboard-header .logo {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  .dashboard-header .logo-img {
+    height: 28px;
+  }
+
+  .profile-icon {
+    font-size: 2rem;
+    padding: 10px;
+  }
+
+  .profile-dropdown {
+    right: 10px;
+    top: 50px;
+    width: 90%;
+  }
+
+  .profile-option {
+    font-size: 0.95rem;
+    padding: 8px 15px;
+  }
+}

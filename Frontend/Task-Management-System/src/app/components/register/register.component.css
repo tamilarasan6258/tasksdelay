@@ -1,0 +1,388 @@
+/* General Body and Page Structure */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f8f9fa;
+  /* Light gray background for the whole page */
+  color: #343a40;
+  /* Dark gray for general text */
+  line-height: 1.6;
+  min-height: 100vh;
+  /* Ensure body takes full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+
+.register-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header Styles (Reused from previous CSS, ensure consistency) */
+.navbar {
+  background-color: #0056b3;
+  /* Strong, professional blue for the header */
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+  /* Prevent header from shrinking */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.logo-img {
+  height: 40px;
+  /* Adjust as needed */
+  margin-right: 10px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  /* margin-left: 25px; */
+  margin-right: 50px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #cce5ff;
+  /* Lighter blue on hover */
+  transform: translateY(-2px);
+}
+
+/* Main Registration Container */
+.register-container {
+  flex-grow: 1;
+  /* Allow main content to take up available space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #e9ecef;
+  /* Slightly darker light gray for the main area */
+  margin-top: 50px;
+}
+
+.register-card {
+  background-color: white;
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+  /* Limit card width for better readability */
+  text-align: center;
+  /* Center align card content */
+  color: #343a40;
+  /* Ensure text within card is readable */
+}
+
+.register-card h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #003366;
+  /* Darker blue for headings */
+}
+
+/* Angular Material Form Field Overrides */
+/* Note: These styles target Angular Material components. */
+.full-width {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  /* Space between form fields */
+}
+
+/* Style for mat-form-field appearance="fill" */
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: #f0f0f0;
+  /* Light gray background for input fields */
+  border-radius: 4px 4px 0 0;
+  /* Match Angular Material's default */
+  padding: 0.75em 0.75em 0 0.75em;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-infix {
+  padding: 0.8em 0;
+}
+
+/* Label and Input Text Color */
+.mat-form-field-label {
+  color: #6c757d !important;
+  /* Gray for labels */
+}
+
+.mat-input-element {
+  color: #495057;
+  /* Darker gray for input text */
+}
+
+/* Focused State */
+.mat-form-field-appearance-fill.mat-focused .mat-form-field-label {
+  color: #007bff !important;
+  /* Primary blue when focused */
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: #007bff;
+  /* Primary blue ripple when focused */
+}
+
+/* Button Styles */
+button[mat-raised-button] {
+  padding: 0.8rem 1.5rem;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  margin-bottom: 1rem;
+  /* Space below buttons */
+}
+
+/* Send OTP button */
+button[color="accent"] {
+  background-color: #17a2b8;
+  /* Info blue for accent button */
+  color: white;
+}
+
+button[color="accent"]:hover {
+  background-color: #138496;
+  /* Darker info blue on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Verify OTP button */
+button[color="primary"] {
+  background-color: #007bff;
+  /* Primary blue for primary button */
+  color: white;
+}
+
+button[color="primary"]:hover {
+  background-color: #0056b3;
+  /* Darker primary blue on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Specific style for the final "Create Account" button */
+.custom-register-btn {
+  background-color: #28a745;
+  /* Green for the main register button */
+  margin-top: 1.5rem;
+  /* More space above the final button */
+}
+
+.custom-register-btn:hover {
+  background-color: #218838;
+  /* Darker green on hover */
+}
+
+.custom-register-btn:disabled {
+  background-color: #6c757d;
+  /* Gray out when disabled */
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: none;
+  /* No transform when disabled */
+  box-shadow: none;
+}
+
+/* OTP Message Styles */
+.register-card p[style="color: white;"] {
+  /* Targeting the specific inline style, better to use a class */
+  color: #dc3545 !important;
+  /* Default to red for error/pending */
+  font-size: 0.95rem;
+  margin-top: -0.5rem;
+  /* Adjust spacing */
+  margin-bottom: 1rem;
+}
+
+/* Specific class for OTP verification success message */
+.register-card p.otp-success-msg {
+  color: #28a745 !important;
+  /* Green for success */
+}
+
+/* Login Link */
+.login-link {
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: #6c757d !important;
+  /* Darker gray for the "Already have an account?" text */
+}
+
+.login-link a {
+  color: #007bff !important;
+  /* Primary blue for the sign-in link */
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.login-link a:hover {
+  color: #0056b3 !important;
+  /* Darker blue on hover */
+  text-decoration: underline;
+}
+
+/* General Message Display (`.msg`) */
+.msg {
+  margin-top: 1rem;
+  font-weight: 500;
+  color: #dc3545;
+  /* Red for error messages */
+  font-size: 1rem;
+}
+
+
+/* Footer Styles (Reused from previous CSS, ensure consistency) */
+.footer {
+  background-color: #343a40;
+  /* Dark gray for the footer */
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  margin-top: auto;
+  /* Push footer to the bottom */
+  flex-shrink: 0;
+  /* Prevent footer from shrinking */
+}
+
+.footer-links {
+  margin-bottom: 15px;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #adb5bd;
+  /* Lighter gray on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .nav-links {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-links a {
+    margin: 0.5rem 15px;
+  }
+
+  .register-container {
+    padding: 1rem;
+  }
+
+  .register-card {
+    padding: 1.5rem;
+  }
+
+  .register-card h2 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo span {
+    display: none;
+    /* Hide KanBoard text on very small screens if logo img is enough */
+  }
+}
+
+
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 96%;
+  background-color: #0056b3;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+
+
+
+/* Hide menu-toggle by default */
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .menu-toggle {
+    display: block;
+    /* Show hamburger on small screens */
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #0056b3;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 1rem 2rem;
+    z-index: 999;
+    margin-top: -1%;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links a {
+    margin: 0.5rem 0;
+  }
+}

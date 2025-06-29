@@ -1,0 +1,156 @@
+:host {
+
+  background-color: #cbdff4;
+
+}
+
+.container {
+  max-height: 80vh;
+  /* Limit height relative to viewport */
+  overflow-y: auto;
+  /* Enable vertical scroll */
+  -ms-overflow-style: none;
+  /* Hide scrollbar in IE and Edge */
+  scrollbar-width: none;
+  /* Hide scrollbar in Firefox */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+h2 {
+  margin-bottom: 24px;
+  font-size: 24px;
+  color: #006064;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Material form field customization */
+mat-form-field {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+mat-form-field.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #b2ebf2;
+  padding-left: 12px;
+}
+
+.mat-form-field.mat-focused .mat-form-field-flex {
+  border: 2px solid #00acc1;
+}
+
+/* Input and textarea */
+input.mat-input-element,
+textarea.mat-input-element {
+  background-color: transparent;
+  font-size: 16px;
+  color: #004d40;
+  padding: 8px 0;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Select box */
+mat-select {
+  background-color: transparent;
+  color: #004d40;
+}
+
+mat-select:hover {
+  background-color: #e0f2f1;
+}
+
+.mat-select-value {
+  padding-left: 4px;
+}
+
+/* Datepicker toggle icon */
+.mat-datepicker-toggle {
+  color: #00796b;
+}
+
+/* Buttons */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+button {
+  border-radius: 20px;
+  font-weight: 500;
+  padding: 8px 24px;
+}
+
+button[color="primary"] {
+  background-color: #00acc1;
+  color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+button[color="primary"]:hover {
+  background-color: #00838f;
+}
+
+button:hover {
+  opacity: 0.95;
+}
+
+
+:host {
+  display: block;
+  max-height: 90vh;
+  width: 80vh;
+  overflow-y: scroll;
+  /* enable scrolling */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+:host::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+  padding: 16px;
+
+  box-sizing: border-box;
+}
+
+/* Scrollable form section */
+.form-content {
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  flex: 1 1 auto;
+  margin-bottom: 12px;
+}
+
+.form-content::-webkit-scrollbar {
+  display: none;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+

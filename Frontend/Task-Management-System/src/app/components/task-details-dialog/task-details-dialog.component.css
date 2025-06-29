@@ -1,0 +1,120 @@
+:host {
+  display: block;
+  padding: 24px;
+  background-color: #cbdff4;
+  /* Light cyan */
+  border-radius: 12px;
+  min-width: 500px;
+  max-height: 100%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+
+
+}
+
+
+
+/* Container scroll for overflow */
+:host ::ng-deep .mat-dialog-container {
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 12px;
+}
+
+/* Header */
+h2 {
+  margin-bottom: 24px;
+  font-size: 24px;
+  color: #006064;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Form styling */
+mat-form-field {
+  display: block;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+/* Buttons row */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+mat-form-field.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #b2ebf2;
+  padding-left: 12px;
+}
+
+.mat-form-field.mat-focused .mat-form-field-flex {
+  border: 2px solid #00acc1;
+}
+
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+mat-select {
+  background-color: transparent;
+  color: #004d40;
+}
+
+mat-select:hover {
+  background-color: #e0f2f1;
+}
+
+.mat-select-value {
+  padding-left: 4px;
+}
+
+/* Datepicker toggle icon */
+.mat-datepicker-toggle {
+  color: #00796b;
+}
+
+
+button {
+  min-width: 90px;
+  border-radius: 20px;
+  font-weight: 500;
+  padding: 8px 24px;
+}
+
+button[color="primary"] {
+  background-color: #00acc1;
+  color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+button[color="primary"]:hover {
+  background-color: #00838f;
+}
+
+button:hover {
+  opacity: 0.95;
+}
+
+/* Make scrollbars look smooth (optional) */
+:host ::ng-deep .mat-dialog-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+:host ::ng-deep .mat-dialog-container::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}
+
+:host ::ng-deep .mat-dialog-container::-webkit-scrollbar-thumb:hover {
+  background-color: #999;
+}
+
+
+/* Visually differentiate disabled matInput fields */
