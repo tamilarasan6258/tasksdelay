@@ -1,0 +1,90 @@
+<div class="register-page">
+<app-header [hideAuthButtons]="true"></app-header>
+   <!-- <header class="navbar">
+    <div class="logo">
+      <img src="assets/images/logo.png" alt="KanBoard Logo" class="logo-img" />
+      <span>KanBoard</span>
+    </div>
+  </header> -->
+
+  <main class="register-container">
+    <h2 class="welcome-title">Welcome</h2>
+    <!-- SESSION EXPIRATION MESSAGE -->
+      <div *ngIf="sessionMessage" class="session-expired-msg">
+        {{ sessionMessage }}
+      </div>
+
+    <mat-card class="register-card">
+      
+      <!-- Login Form -->
+      <form [formGroup]="loginForm" (ngSubmit)="login()" *ngIf="!showForgotPassword">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" formControlName="uname" placeholder="Enter your username" />
+          <mat-error *ngIf="isFieldInvalid(loginForm, 'uname')">
+            Username is required
+          </mat-error>
+        </mat-form-field>
+
+        <div class="password-container">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" placeholder="Enter your password"
+              autocomplete="new-password" />
+            <mat-error *ngIf="isFieldInvalid(loginForm, 'password')">
+              {{ getErrorMessage(loginForm, 'password') }}
+            </mat-error>
+          </mat-form-field>
+          <p class="forgot-password-link" *ngIf="!showForgotPassword && !resetEmailSent"
+            (click)="showForgotPassword = true">
+            Forgot Password?
+          </p>
+        </div>
+
+        <div class="button-container">
+          <button mat-raised-button color="primary" class="login-button" type="submit"
+            [disabled]="loginForm.invalid">Sign In</button>
+        </div>
+      </form>
+
+      <!-- Forgot Password Form -->
+      <form [formGroup]="forgotPasswordForm" *ngIf="showForgotPassword && !resetEmailSent"
+        (ngSubmit)="requestPasswordReset()">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="resetEmail" placeholder="Enter your email" />
+          <mat-error *ngIf="isFieldInvalid(forgotPasswordForm, 'resetEmail')">
+            {{ getErrorMessage(forgotPasswordForm, 'resetEmail') }}
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="full-width login-button" type="submit"
+          [disabled]="forgotPasswordForm.invalid">Send Reset Link</button>
+        <button mat-button color="primary" (click)="showForgotPassword = false">Back to Login</button>
+      </form>
+
+      <div *ngIf="resetEmailSent" class="reset-message">
+        <p class="msg" style="color: green; text-align: center;">{{ msg }}</p>
+        <button mat-button color="primary" (click)="showForgotPassword = false; resetEmailSent = false">Back to
+          Login</button>
+      </div>
+
+    </mat-card>
+
+    <!-- Registration link below card -->
+    <p class="register-link" *ngIf="!showForgotPassword && !resetEmailSent">
+      Don't have an account? <a routerLink="/register" routerLinkActive="active">Create one here</a>
+    </p>
+  </main>
+
+  <!-- Reused Footer -->
+  <!-- <footer class="footer">
+    <div class="footer-links">
+      <a href="#" style="font-size:large"><b>FAQs</b></a>
+      <a href="#" style="font-size:large"><b>Contact</b></a>
+      <a href="#" style="font-size:large"><b>Privacy Policy</b></a>
+    </div>
+    <p style="margin-top: 10px; font-size:medium; color:#666">&copy; 2025 Kanboard. All rights reserved.</p>
+  </footer> -->
+  <app-footer></app-footer>
+</div>

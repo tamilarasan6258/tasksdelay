@@ -1,0 +1,110 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<div class="register-page">
+  <app-header [hideAuthButtons]="true"></app-header>
+  <!-- <header class="navbar">
+    <div class="logo">
+      <img src="assets/images/logo.png" alt="KanBoard Logo" class="logo-img" />
+      <span routerLink="/">KanBoard</span>
+    </div>
+    <button class="menu-toggle" (click)="toggleMenu()">&#9776;</button>
+  </header> -->
+
+  <!-- Registration Form -->
+  <main class="register-container">
+    <h2 class="page-title">Create Account</h2>
+    <mat-card class="register-card">
+
+      <form (ngSubmit)="register()">
+        <!-- Step 1: Username and Email -->
+        <div class="form-section">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Username</mat-label>
+            <input matInput type="text" [(ngModel)]="uname" name="uname"
+              placeholder="Enter your username (min 6 characters)" required (input)="onUsernameChange()" />
+            <mat-error *ngIf="uname && !validateUsername()">Username must be at least 6 characters</mat-error>
+          </mat-form-field>
+          <div *ngIf="usernameError" class="custom-error-message">{{ usernameError }}</div>
+
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Email Address</mat-label>
+            <input matInput type="email" [(ngModel)]="email" name="email" placeholder="Enter your email" required (input)="onEmailChange()" />
+            <mat-error *ngIf="email && !validateEmail()">Please enter a valid email address</mat-error>
+          </mat-form-field>
+          <div *ngIf="emailError" class="custom-error-message">{{ emailError }}</div>
+
+          <div class="button-container">
+            <button mat-raised-button color="accent" type="button" (click)="sendOTP()"
+              [disabled]="!uname || !email || !validateUsername() || !validateEmail()">
+              Send OTP
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: OTP Verification -->
+        <div class="form-section" *ngIf="otpMsg">
+          <div class="otp-message">
+            {{otpMsg}}
+          </div>
+
+          <div class="otp-input-container">
+            <mat-form-field appearance="fill" class="otp-field">
+              <mat-label>Enter OTP</mat-label>
+              <input matInput type="text" [(ngModel)]="otp" name="otp" placeholder="Enter the OTP you received"
+                required />
+            </mat-form-field>
+            
+            <button mat-raised-button color="primary" type="button" (click)="verifyOtp()" class="verify-button"
+              [disabled]="!otp || otpAttempts >= maxOtpAttempts">
+              Verify OTP
+            </button>
+          </div>
+
+          <div class="otp-verification-message" *ngIf="otpVerificationMessage" [class.success]="otpVerified"
+            [class.error]="!otpVerified">
+            {{otpVerificationMessage}}
+          </div>
+        </div>
+
+        <!-- Step 3: Password -->
+        <div class="form-section" *ngIf="otpVerified">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" [(ngModel)]="password" name="password" placeholder="Enter your password"
+              required />
+            <mat-hint *ngIf="password && !validatePassword()" class="password-requirements" style="color: #dc3545 !important; margin-top: 2 rem;">
+                    {{ getPasswordValidationMessage() }}
+            </mat-hint>
+            <mat-error *ngIf="password && !validatePassword()">
+              Password doesn't meet all requirements
+            </mat-error>
+          </mat-form-field>
+          <br>
+
+          <div class="button-container">
+            <button mat-raised-button color="primary" type="submit" class="custom-register-btn"
+              [disabled]="!validatePassword()">
+              Create Account
+            </button>
+          </div>
+        </div>
+
+        <p class="msg">{{ msg }}</p>
+      </form>
+    </mat-card>
+    
+    <p class="login-link">
+      Already have an account? <a routerLink="/login" routerLinkActive="active">Sign in here</a>
+    </p>
+  </main>
+
+  <!-- <footer class="footer">
+    <div class="footer-links">
+      <a href="#" style="font-size:large"><b>FAQs</b></a>
+      <a href="#" style="font-size:large"><b>Contact</b></a>
+      <a href="#" style="font-size:large"><b>Privacy Policy</b></a>
+    </div>
+    <p style="margin-top: 10px; font-size:medium; color:#666">&copy; 2025 Kanboard. All rights reserved.</p>
+  </footer> -->
+  <app-footer></app-footer>
+</div>
